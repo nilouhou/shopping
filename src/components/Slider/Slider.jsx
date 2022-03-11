@@ -1,5 +1,7 @@
 import React from "react";
 import ArrowLeftOutlinedIcon from "@mui/icons-material/ArrowLeftOutlined";
+import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowRightOutlined";
+
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -9,7 +11,7 @@ const Container = styled.div`
 `;
 
 const Arrow = styled.div`
-	with: 50px;
+	width: 50px;
 	height: 50px;
 	background-color: #fff7f7;
 	border-radius: 50%;
@@ -18,12 +20,17 @@ const Arrow = styled.div`
 	justify-content: center;
 `;
 const Slider = () => {
-	return;
-	<Container>
-		<Arrow>
-			<ArrowLeftOutlinedIcon />
-		</Arrow>
-	</Container>;
+	return (
+		<Container>
+			<Arrow>
+				<ArrowLeftOutlinedIcon />
+			</Arrow>
+
+			<Arrow>
+				<ArrowRightOutlinedIcon />
+			</Arrow>
+		</Container>
+	);
 };
 
 export default Slider;
