@@ -31,6 +31,7 @@ const Arrow = styled.div`
 
 const Wrapper = styled.div`
 	height: 100%;
+	display: flex;
 `;
 
 const Slide = styled.div`
@@ -52,9 +53,20 @@ const InfoContainer = styled.div`
 	padding: 50px;
 `;
 
-const Title = styled.h1``;
-const Description = styled.p``;
-const Button = styled.button``;
+const Title = styled.h1`
+	font-size: 70px;
+`;
+const Description = styled.p`
+	margin: 50px 0;
+	font-size: 20px;
+	font-weight: 500;
+`;
+const Button = styled.button`
+	padding: 10px;
+	font-size: 20px;
+	background-color: transparent;
+	cursor: pointer;
+`;
 
 const Slider = () => {
 	return (
@@ -63,6 +75,21 @@ const Slider = () => {
 				<ArrowLeftOutlinedIcon />
 			</Arrow>
 			<Wrapper>
+				<Slide>
+					<ImgContainer>
+						<Img src="https://i.ibb.co/DG69bQ4/2.png" />
+					</ImgContainer>
+					<InfoContainer>
+						<Title>Summer Sale!</Title>
+						<Description>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Cupiditate asperiores aliquam nobis labore, porro adipisci numquam
+							minus consectetur molestiae! Velit quo quaerat neque distinctio,
+							possimus numquam hic adipisci sint impedit?
+						</Description>
+						<Button>Shop now</Button>
+					</InfoContainer>
+				</Slide>
 				<Slide>
 					<ImgContainer>
 						<Img src="https://i.ibb.co/DG69bQ4/2.png" />
