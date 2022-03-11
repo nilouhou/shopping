@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import ArrowLeftOutlinedIcon from "@mui/icons-material/ArrowLeftOutlined";
 import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowRightOutlined";
+import { sliderItems } from "../../data/data";
 
 import styled from "styled-components";
 
@@ -9,6 +10,7 @@ const Container = styled.div`
 	height: 100vh;
 	display: flex;
 	position: relative;
+	overflow: hidden;
 `;
 
 const Arrow = styled.div`
@@ -32,6 +34,7 @@ const Arrow = styled.div`
 const Wrapper = styled.div`
 	height: 100%;
 	display: flex;
+	transform: translateX(${(props) => props.slideIndex * -100}vw);
 `;
 
 const Slide = styled.div`
@@ -39,17 +42,21 @@ const Slide = styled.div`
 	height: 100vh;
 	display: flex;
 	align-items: center;
+	padding: 10px;
+	background-color: #${(props) => props.bg};
 `;
 const ImgContainer = styled.div`
 	flex: 1;
 	height: 100%;
+	display: flex;
+	justify-content: flex-end;
 `;
 
 const Img = styled.img`
-	height: 80%;
+	height: 100%;
 `;
 const InfoContainer = styled.div`
-	flex: 1;
+	flex: 2;
 	padding: 50px;
 `;
 
@@ -69,44 +76,37 @@ const Button = styled.button`
 `;
 
 const Slider = () => {
+	const [slideIndex, setSlideIndex] = useState(0);
+	const handleClick = (direction) => {
+		console.log("click");
+		if (direction === "left") {
+			setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+			console.log(slideIndex);
+		} else {
+			setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+			console.log(slideIndex);
+		}
+	};
 	return (
 		<Container>
-			<Arrow direction="left">
+			<Arrow direction="left" onClick={() => handleClick("left")}>
 				<ArrowLeftOutlinedIcon />
 			</Arrow>
-			<Wrapper>
-				<Slide>
-					<ImgContainer>
-						<Img src="https://i.ibb.co/DG69bQ4/2.png" />
-					</ImgContainer>
-					<InfoContainer>
-						<Title>Summer Sale!</Title>
-						<Description>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							Cupiditate asperiores aliquam nobis labore, porro adipisci numquam
-							minus consectetur molestiae! Velit quo quaerat neque distinctio,
-							possimus numquam hic adipisci sint impedit?
-						</Description>
-						<Button>Shop now</Button>
-					</InfoContainer>
-				</Slide>
-				<Slide>
-					<ImgContainer>
-						<Img src="https://i.ibb.co/DG69bQ4/2.png" />
-					</ImgContainer>
-					<InfoContainer>
-						<Title>Summer Sale!</Title>
-						<Description>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							Cupiditate asperiores aliquam nobis labore, porro adipisci numquam
-							minus consectetur molestiae! Velit quo quaerat neque distinctio,
-							possimus numquam hic adipisci sint impedit?
-						</Description>
-						<Button>Shop now</Button>
-					</InfoContainer>
-				</Slide>
+			<Wrapper slideIndex={slideIndex}>
+				{sliderItems.map((item) => (
+					<Slide bg={item.bg} key={item.id}>
+						<ImgContainer>
+							<Img src={item.img} />
+						</ImgContainer>
+						<InfoContainer>
+							<Title>{item.title}</Title>
+							<Description>{item.desc}</Description>
+							<Button>Shop now</Button>
+						</InfoContainer>
+					</Slide>
+				))}
 			</Wrapper>
-			<Arrow direction="right">
+			<Arrow direction="right" onClick={() => handleClick("right")}>
 				<ArrowRightOutlinedIcon />
 			</Arrow>
 		</Container>
