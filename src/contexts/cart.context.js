@@ -36,7 +36,7 @@ const removeCartItem = (cartItems, productsToRemove) => {
 	);
 };
 
-export  CartProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
 	const [CartOpen, setCartOpen] = useState(false);
 	const [cartItems, setCartItems] = useState([]);
 	const [cartCount, setCartCount] = useState(0);
