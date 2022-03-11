@@ -25,14 +25,60 @@ const Arrow = styled.div`
 	margin: auto;
 	left: ${(props) => props.direction === "left" && "10px"};
 	right: ${(props) => props.direction === "right" && "10px"};
+	cursor: pointer;
+	opacity: 0.5;
 `;
+
+const Wrapper = styled.div`
+	height: 100%;
+`;
+
+const Slide = styled.div`
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+`;
+const ImgContainer = styled.div`
+	flex: 1;
+	height: 100%;
+`;
+
+const Img = styled.img`
+	height: 80%;
+`;
+const InfoContainer = styled.div`
+	flex: 1;
+	padding: 50px;
+`;
+
+const Title = styled.h1``;
+const Description = styled.p``;
+const Button = styled.button``;
+
 const Slider = () => {
 	return (
 		<Container>
 			<Arrow direction="left">
 				<ArrowLeftOutlinedIcon />
 			</Arrow>
-
+			<Wrapper>
+				<Slide>
+					<ImgContainer>
+						<Img src="https://i.ibb.co/DG69bQ4/2.png" />
+					</ImgContainer>
+					<InfoContainer>
+						<Title>Summer Sale!</Title>
+						<Description>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Cupiditate asperiores aliquam nobis labore, porro adipisci numquam
+							minus consectetur molestiae! Velit quo quaerat neque distinctio,
+							possimus numquam hic adipisci sint impedit?
+						</Description>
+						<Button>Shop now</Button>
+					</InfoContainer>
+				</Slide>
+			</Wrapper>
 			<Arrow direction="right">
 				<ArrowRightOutlinedIcon />
 			</Arrow>
