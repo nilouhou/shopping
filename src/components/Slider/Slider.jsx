@@ -29,6 +29,7 @@ const Arrow = styled.div`
 	right: ${(props) => props.direction === "right" && "10px"};
 	cursor: pointer;
 	opacity: 0.5;
+	z-index: 2;
 `;
 
 const Wrapper = styled.div`
