@@ -44,9 +44,12 @@ const Header = () => {
 						</Badge>
 					</MenuItem>
 					<MenuItem>Register</MenuItem>
-					<MenuItem>Login</MenuItem>
+					<MenuItem>
+						<Link to="/login">Login</Link>
+					</MenuItem>
 				</Right>
 			</Container>
+
 			<Outlet />
 		</>
 	);

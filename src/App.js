@@ -4,6 +4,7 @@ import "./App.scss";
 
 import { Routes, Route } from "react-router-dom";
 import { Shop } from "./pages/Shop/Shop";
+import Login from "./pages/Login/Login";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				<Route path="/" element={<Header />}>
 					<Route path="/" element={<Home />} />
 					<Route path="/shop" element={<Shop />} />
+					<Route path="/login" element={<Login />} />
 				</Route>
 			</Routes>
 		</>
