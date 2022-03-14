@@ -1,16 +1,19 @@
 import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import "./App.scss";
-import Slider from "./components/Slider/Slider";
-import Categories from "./components/Categories/Categories";
+
+import { Routes, Route } from "react-router-dom";
+import { Shop } from "./pages/Shop/Shop";
 
 function App() {
 	return (
 		<>
-			<Header />
-			<Home />
-			<Slider />
-			<Categories />
+			<Routes>
+				<Route path="/" element={<Header />}>
+					<Route path="/" element={<Home />} />
+					<Route path="/shop" element={<Shop />} />
+				</Route>
+			</Routes>
 		</>
 	);
 }

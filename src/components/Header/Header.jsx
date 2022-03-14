@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet, Link } from "react-router-dom";
 import styled from "styled-components";
 import Badge from "@mui/material/Badge";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -17,7 +18,6 @@ const Right = styled.div`
 	display: flex;
 	font-size: 1rem;
 `;
-const Center = styled.div``;
 
 const Left = styled.div``;
 const MenuItem = styled.div`
@@ -26,21 +26,29 @@ const MenuItem = styled.div`
 
 const Header = () => {
 	return (
-		<Container>
-			<Left>
-				<h1>Baritzia</h1>
-			</Left>
-			<Center>Center</Center>
-			<Right>
-				<MenuItem>
-					<Badge badgeContent={4} color="primary">
-						<ShoppingCartOutlinedIcon />
-					</Badge>
-				</MenuItem>
-				<MenuItem>Register</MenuItem>
-				<MenuItem>Login</MenuItem>
-			</Right>
-		</Container>
+		<>
+			<Container>
+				<Left>
+					<Link to="/">
+						<h1>Baritzia</h1>
+					</Link>
+				</Left>
+
+				<Right>
+					<MenuItem>
+						<Link to="/shop">Shopping</Link>
+					</MenuItem>
+					<MenuItem>
+						<Badge badgeContent={4} color="primary">
+							<ShoppingCartOutlinedIcon />
+						</Badge>
+					</MenuItem>
+					<MenuItem>Register</MenuItem>
+					<MenuItem>Login</MenuItem>
+				</Right>
+			</Container>
+			<Outlet />
+		</>
 	);
 };
 
