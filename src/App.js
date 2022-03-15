@@ -11,9 +11,9 @@ function App() {
 		<>
 			<Routes>
 				<Route path="/" element={<Header />}>
-					<Route path="/" element={<Home />} />
-					<Route path="/shop" element={<Shop />} />
-					<Route path="/login" element={<Login />} />
+					<Route index element={<Home />} />
+					<Route path="shop" element={<Shop />} />
+					<Route path="login" element={<Login />} />
 				</Route>
 			</Routes>
 		</>
