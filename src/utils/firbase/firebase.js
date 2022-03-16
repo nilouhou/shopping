@@ -43,7 +43,24 @@ export const db = getFirestore();
 //how to use the database, create a method to use it
 export const createUserDocrumentFromAuth = async (userAuth) => {
 	//doc is getting 3 argument, db, name of collection in database and unique id
-	const userDocRef = doc(db, "user", userAuth.uid);
+	const userDocRef = doc(db, "users", userAuth.uid);
 
 	const userData = await getDoc(userDocRef);
+	console.log(userData);
+
+	if (!userData.exists()) {
+		const { displayName, email } = userAuth;
+		const createdAt = new Date();
+		try {
+			//set the doc if the user does not exit
+			await setDoc(userDocRef, {
+				displayName,
+				email,
+				createdAt,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	}
+	return userDocRef;
 };
