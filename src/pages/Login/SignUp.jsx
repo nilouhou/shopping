@@ -1,13 +1,9 @@
-import {
-	signInWithGooglePopup,
-	createUserDocrumentFromAuth,
-	creatAuthUserWithEmailAndPassword,
-} from "../../utils/firbase/firebase";
+import { creatAuthUserWithEmailAndPassword } from "../../utils/firbase/firebase";
 
 import { useState } from "react";
 import FormInput from "../../components/FormInput/FormInput";
 
-const Login = () => {
+const SignUp = () => {
 	const intialVlue = {
 		displayName: "",
 		email: "",
@@ -16,27 +12,22 @@ const Login = () => {
 	};
 	const [values, setValues] = useState(intialVlue);
 
-	const logGoogleUser = async () => {
-		const { user } = await signInWithGooglePopup();
-		const userDocRef = await createUserDocrumentFromAuth(user);
-	};
-
 	const handleChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	};
 
+	console.log(values);
+	const { displayName, email, password, confirmPassword } = values;
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(values);
-		if (values.password !== values.confirmPassword) {
+
+		if (password !== confirmPassword) {
 			return;
 		}
 
 		try {
-			const response = await creatAuthUserWithEmailAndPassword(
-				values.email,
-				values.password
-			);
+			const response = await creatAuthUserWithEmailAndPassword(email, password);
 
 			console.log(response);
 		} catch (error) {
@@ -67,7 +58,7 @@ const Login = () => {
 			name: "password",
 			label: "Password",
 			placeholder: "Password",
-			pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+
 			required: true,
 		},
 		{
@@ -76,14 +67,14 @@ const Login = () => {
 			type: "password",
 			placeholder: "Confirm Password",
 			label: "Confirm Password",
-			pattern: values.password,
+
 			required: true,
 		},
 	];
 
 	return (
 		<div>
-			<h1>Login page</h1>
+			<h1>Sin up page</h1>
 			<form onSubmit={handleSubmit}>
 				{inputs.map((input) => (
 					<FormInput
@@ -93,11 +84,11 @@ const Login = () => {
 						onChange={handleChange}
 					/>
 				))}
+
+				<button type="submit">SignUp</button>
 			</form>
-			<button type="submit">Login</button>
-			<button onClick={logGoogleUser}>Sign in with Google</button>
 		</div>
 	);
 };
 
-export default Login;
+export default SignUp;

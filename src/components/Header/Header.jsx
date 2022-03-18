@@ -43,7 +43,9 @@ const Header = () => {
 							<ShoppingCartOutlinedIcon />
 						</Badge>
 					</MenuItem>
-					<MenuItem>Register</MenuItem>
+					<MenuItem>
+						<Link to="/register">Register</Link>
+					</MenuItem>
 					<MenuItem>
 						<Link to="/login">Login</Link>
 					</MenuItem>

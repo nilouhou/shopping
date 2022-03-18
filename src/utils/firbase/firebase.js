@@ -6,7 +6,7 @@ import {
 	GoogleAuthProvider,
 	getAuth,
 	signInWithPopup,
-	signInWithRedirect,
+	createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 //import firebase storedata
@@ -42,11 +42,11 @@ export const db = getFirestore();
 
 //how to use the database, create a method to use it
 export const createUserDocrumentFromAuth = async (userAuth) => {
+	if (!userAuth) return;
 	//doc is getting 3 argument, db, name of collection in database and unique id
 	const userDocRef = doc(db, "users", userAuth.uid);
 
 	const userData = await getDoc(userDocRef);
-	console.log(userData);
 
 	if (!userData.exists()) {
 		const { displayName, email } = userAuth;
@@ -63,4 +63,11 @@ export const createUserDocrumentFromAuth = async (userAuth) => {
 		}
 	}
 	return userDocRef;
+};
+
+//Function for using email and padssword
+export const creatAuthUserWithEmailAndPassword = async (email, password) => {
+	if (!email || !password) return;
+
+	return await createUserWithEmailAndPassword(auth, email, password);
 };
