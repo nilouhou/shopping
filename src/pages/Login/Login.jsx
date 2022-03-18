@@ -53,9 +53,9 @@ const Login = () => {
 		{
 			id: 4,
 			type: "password",
-			name: "comfirmed",
-			label: "comfirmed",
-			placeholder: "Comfirmed Password",
+			name: "password",
+			label: "Confirmed Password",
+			placeholder: "Confirmed Password",
 			required: true,
 		},
 	];

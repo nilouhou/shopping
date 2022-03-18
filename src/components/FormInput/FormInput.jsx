@@ -4,7 +4,7 @@ const FormInput = ({ label, id, onChange, ...inputProps }) => {
 	return (
 		<>
 			<label>{label}</label>
-			<input {...inputProps} onChange={onChange} />;
+			<input {...inputProps} onChange={onChange} />
 		</>
 	);
 };
