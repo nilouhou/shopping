@@ -4,11 +4,15 @@ import {
 } from "../../utils/firbase/firebase";
 
 import { useState } from "react";
+import FormInput from "../../components/FormInput/FormInput";
+import { useInRouterContext } from "react-router-dom";
 
 const Login = () => {
 	const intialVlue = {
+		displayName: "",
 		email: "",
 		password: "",
+		confirmedPassword: "",
 	};
 	const [values, setValues] = useState(intialVlue);
 
@@ -21,25 +25,53 @@ const Login = () => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	};
 
+	const inputs = [
+		{
+			id: 1,
+			type: "text",
+			name: "displayName",
+			label: "Name",
+			placeholder: "Name",
+			required: true,
+		},
+		{
+			id: 2,
+			type: "email",
+			name: "email",
+			label: "Email",
+			placeholder: "Email",
+			required: true,
+		},
+		{
+			id: 3,
+			type: "password",
+			name: "password",
+			label: "Password",
+			placeholder: "Password",
+			required: true,
+		},
+		{
+			id: 4,
+			type: "password",
+			name: "comfirmed",
+			label: "comfirmed",
+			placeholder: "Comfirmed Password",
+			required: true,
+		},
+	];
 	console.log(values);
 	return (
 		<div>
 			<h1>Login page</h1>
 			<form>
-				<label>Email</label>
-				<input
-					type="email"
-					name="email"
-					onChange={handleChange}
-					value={values.email}
-				/>
-				<label>Passwprd</label>
-				<input
-					type="password"
-					name="password"
-					onChange={handleChange}
-					value={values.password}
-				/>
+				{inputs.map((input) => (
+					<FormInput
+						key={input.id}
+						{...input}
+						value={values[input.name]}
+						onChange={handleChange}
+					/>
+				))}
 			</form>
 			<button type="submit">Login</button>
 			<button onClick={logGoogleUser}>Sign in with Google</button>
