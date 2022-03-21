@@ -2,6 +2,8 @@ import { creatAuthUserWithEmailAndPassword } from "../../utils/firbase/firebase"
 
 import { useState } from "react";
 import FormInput from "../../components/FormInput/FormInput";
+import "./Login.scss";
+import Button from "../../components/Button/Button";
 
 const SignUp = () => {
 	const intialVlue = {
@@ -73,20 +75,24 @@ const SignUp = () => {
 	];
 
 	return (
-		<div>
-			<h1>Sin up page</h1>
-			<form onSubmit={handleSubmit}>
-				{inputs.map((input) => (
-					<FormInput
-						key={input.id}
-						{...input}
-						value={values[input.name]}
-						onChange={handleChange}
-					/>
-				))}
+		<div className="container">
+			<div className="register-wrapper">
+				<h1>Sin up page</h1>
+				<form onSubmit={handleSubmit}>
+					{inputs.map((input) => (
+						<FormInput
+							key={input.id}
+							{...input}
+							value={values[input.name]}
+							onChange={handleChange}
+						/>
+					))}
 
-				<button type="submit">SignUp</button>
-			</form>
+					<Button type="submit" buttonType="primary">
+						SignUp
+					</Button>
+				</form>
+			</div>
 		</div>
 	);
 };
