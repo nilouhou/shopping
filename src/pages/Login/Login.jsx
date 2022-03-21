@@ -1,18 +1,17 @@
 import {
 	signInWithGooglePopup,
 	createUserDocrumentFromAuth,
-	creatAuthUserWithEmailAndPassword,
+	signInWithStoredEmail,
 } from "../../utils/firbase/firebase";
 
 import { useState } from "react";
 import FormInput from "../../components/FormInput/FormInput";
+import Button from "../../components/Button/Button";
 
 const Login = () => {
 	const intialVlue = {
-		displayName: "",
 		email: "",
 		password: "",
-		confirmPassword: "",
 	};
 	const [values, setValues] = useState(intialVlue);
 
@@ -25,34 +24,20 @@ const Login = () => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	};
 
+	const { email, password } = values;
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(values);
-		if (values.password !== values.confirmPassword) {
-			return;
-		}
-
 		try {
-			const response = await creatAuthUserWithEmailAndPassword(
-				values.email,
-				values.password
-			);
-
-			console.log(response);
+			const logUser = async () => {
+				const { user } = await signInWithStoredEmail(email, password);
+				const userDocRef = await createUserDocrumentFromAuth(user);
+			};
 		} catch (error) {
-			console.log(error);
+			console.log(error.code);
 		}
 	};
 
 	const inputs = [
-		{
-			id: 1,
-			type: "text",
-			name: "displayName",
-			label: "Name",
-			placeholder: "Name",
-			required: true,
-		},
 		{
 			id: 2,
 			type: "email",
@@ -70,15 +55,6 @@ const Login = () => {
 			pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
 			required: true,
 		},
-		{
-			id: 4,
-			name: "confirmPassword",
-			type: "password",
-			placeholder: "Confirm Password",
-			label: "Confirm Password",
-			pattern: values.password,
-			required: true,
-		},
 	];
 
 	return (
@@ -94,8 +70,12 @@ const Login = () => {
 					/>
 				))}
 			</form>
-			<button type="submit">Login</button>
-			<button onClick={logGoogleUser}>Sign in with Google</button>
+			<Button type="submit" buttonType="primary">
+				Login
+			</Button>
+			<Button onClick={logGoogleUser} buttonType="primary">
+				Sign in with Google
+			</Button>
 		</div>
 	);
 };
