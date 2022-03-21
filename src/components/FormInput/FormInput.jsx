@@ -1,11 +1,17 @@
 import React from "react";
-
-const FormInput = ({ label, id, onChange, ...inputProps }) => {
+import "./FormInput.scss";
+const FormInput = ({ label, id, onChange, placeholder, ...inputProps }) => {
 	return (
-		<>
-			<label>{label}</label>
-			<input {...inputProps} onChange={onChange} />
-		</>
+		<div className="group">
+			<input className="form-input" {...inputProps} onChange={onChange} />
+			{label && (
+				<label
+					className={`${inputProps.value ? "shrink" : ""} form-input-label`}
+				>
+					{label}
+				</label>
+			)}
+		</div>
 	);
 };
 
