@@ -1,6 +1,6 @@
 import {
 	signInWithGooglePopup,
-	createUserDocrumentFromAuth,
+	createUserDocumentFromAuth,
 	signInWithStoredEmail,
 } from "../../utils/firbase/firebase";
 
@@ -15,9 +15,9 @@ const Login = () => {
 	};
 	const [values, setValues] = useState(intialVlue);
 
-	const logGoogleUser = async () => {
+	const signInWithGoogle = async () => {
 		const { user } = await signInWithGooglePopup();
-		await createUserDocrumentFromAuth(user);
+		await createUserDocumentFromAuth(user);
 	};
 
 	const handleChange = (e) => {
@@ -25,15 +25,28 @@ const Login = () => {
 	};
 
 	const { email, password } = values;
+
+	const resetFormFields = () => {
+		setValues(intialVlue);
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const logUser = async () => {
-				const response = await signInWithStoredEmail(email, password);
-				console.log(response);
-			};
+			const response = await signInWithStoredEmail(email, password);
+			console.log(response);
+			resetFormFields();
 		} catch (error) {
-			console.log(error.code);
+			switch (error.code) {
+				case "auth/wrong-password":
+					alert("incorrect password for email");
+					break;
+				case "auth/user-not-found":
+					alert("no user associated with this email");
+					break;
+				default:
+					console.log(error);
+			}
 		}
 	};
 
@@ -52,7 +65,7 @@ const Login = () => {
 			name: "password",
 			label: "Password",
 			placeholder: "Password",
-			pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+
 			required: true,
 		},
 	];
@@ -69,13 +82,13 @@ const Login = () => {
 						onChange={handleChange}
 					/>
 				))}
+				<Button type="submit" buttonType="primary">
+					Login
+				</Button>
+				<Button type="button" onClick={signInWithGoogle} buttonType="primary">
+					Sign in with Google
+				</Button>
 			</form>
-			<Button type="submit" buttonType="primary">
-				Login
-			</Button>
-			<Button type="button" onClick={logGoogleUser} buttonType="primary">
-				Sign in with Google
-			</Button>
 		</div>
 	);
 };

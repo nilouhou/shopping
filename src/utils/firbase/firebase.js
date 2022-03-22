@@ -8,6 +8,7 @@ import {
 	signInWithPopup,
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
+	signInWithRedirect,
 } from "firebase/auth";
 
 //import firebase storedata
@@ -29,20 +30,26 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 // creating Authentication provider
-const provider = new GoogleAuthProvider(); // it is a class and we can have many providers in app that is why we are making instance of it
+const googleProvider = new GoogleAuthProvider(); // it is a class and we can have many providers in app that is why we are making instance of it
 
-provider.setCustomParameters({
+googleProvider.setCustomParameters({
 	propmt: "select_account",
 });
 
 export const auth = getAuth(); // we only need one rule of authentication, so we don't need instance and new
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () =>
+	signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () =>
+	signInWithRedirect(auth, googleProvider);
 
 //Create database instance
 export const db = getFirestore();
 
 //how to use the database, create a method to use it
-export const createUserDocrumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+	userAuth,
+	additionalInformation = {}
+) => {
 	if (!userAuth) return;
 	//doc is getting 3 argument, db, name of collection in database and unique id
 	const userDocRef = doc(db, "users", userAuth.uid);
@@ -58,6 +65,7 @@ export const createUserDocrumentFromAuth = async (userAuth) => {
 				displayName,
 				email,
 				createdAt,
+				...additionalInformation,
 			});
 		} catch (error) {
 			console.log(error);
