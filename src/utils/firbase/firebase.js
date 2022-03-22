@@ -9,6 +9,7 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	signInWithRedirect,
+	signOut,
 } from "firebase/auth";
 
 //import firebase storedata
@@ -87,3 +88,6 @@ export const signInWithStoredEmail = async (email, password) => {
 	if (!email || !password) return;
 	return await signInWithEmailAndPassword(auth, email, password);
 };
+
+//Sign out function
+export const signOutFirebase = () => signOut(auth);

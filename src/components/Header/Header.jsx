@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Badge from "@mui/material/Badge";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { UserContext } from "../../contexts/user.context";
+import { signOutFirebase } from "../../utils/firbase/firebase";
 
 const Container = styled.div`
 	height: 3.75rem;
@@ -26,8 +27,13 @@ const MenuItem = styled.div`
 `;
 
 const Header = () => {
-	const { currentUser } = useContext(UserContext);
+	const { currentUser, setCurrentUser } = useContext(UserContext);
 	console.log(currentUser);
+
+	const signOutHandler = () => {
+		signOutFirebase();
+		setCurrentUser(null);
+	};
 	return (
 		<>
 			<Container>
@@ -50,7 +56,11 @@ const Header = () => {
 						<Link to="/register">Register</Link>
 					</MenuItem>
 					<MenuItem>
-						<Link to="/login">Login</Link>
+						{currentUser ? (
+							<span onClick={signOutHandler}>Sign Out</span>
+						) : (
+							<Link to="/login">Login</Link>
+						)}
 					</MenuItem>
 				</Right>
 			</Container>
