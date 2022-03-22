@@ -4,9 +4,10 @@ import {
 	signInWithStoredEmail,
 } from "../../utils/firbase/firebase";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import FormInput from "../../components/FormInput/FormInput";
 import Button from "../../components/Button/Button";
+import { UserContext } from "../../contexts/user.context";
 
 const Login = () => {
 	const intialVlue = {
@@ -14,6 +15,9 @@ const Login = () => {
 		password: "",
 	};
 	const [values, setValues] = useState(intialVlue);
+
+	//use context
+	const { setCurrentUser } = useContext(UserContext);
 
 	const signInWithGoogle = async () => {
 		const { user } = await signInWithGooglePopup();
@@ -33,8 +37,8 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await signInWithStoredEmail(email, password);
-			console.log(response);
+			const { user } = await signInWithStoredEmail(email, password);
+			setCurrentUser(user);
 			resetFormFields();
 		} catch (error) {
 			switch (error.code) {

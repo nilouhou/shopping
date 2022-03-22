@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import styled from "styled-components";
 import Badge from "@mui/material/Badge";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { UserContext } from "../../contexts/user.context";
 
 const Container = styled.div`
 	height: 3.75rem;
@@ -25,6 +26,8 @@ const MenuItem = styled.div`
 `;
 
 const Header = () => {
+	const { currentUser } = useContext(UserContext);
+	console.log(currentUser);
 	return (
 		<>
 			<Container>

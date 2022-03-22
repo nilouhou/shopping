@@ -10,7 +10,7 @@ export const UserContext = createContext({
 
 //actual component provider
 //Provider component make the context store available to any nested components that need to access
-export const UserProdvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
 	const value = { currentUser, setCurrentUser };
 
