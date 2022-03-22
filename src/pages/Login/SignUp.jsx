@@ -4,7 +4,6 @@ import { useState, useContext } from "react";
 import FormInput from "../../components/FormInput/FormInput";
 import "./Login.scss";
 import Button from "../../components/Button/Button";
-import { UserContext } from "../../contexts/user.context";
 
 const SignUp = () => {
 	const intialVlue = {
@@ -14,8 +13,6 @@ const SignUp = () => {
 		confirmPassword: "",
 	};
 	const [values, setValues] = useState(intialVlue);
-
-	const { setCurrentUser } = useContext(UserContext);
 
 	const handleChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.value });
@@ -33,7 +30,6 @@ const SignUp = () => {
 
 		try {
 			const { user } = await creatAuthUserWithEmailAndPassword(email, password);
-			setCurrentUser(user);
 		} catch (error) {
 			console.log(error);
 		}
