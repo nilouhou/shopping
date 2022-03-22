@@ -17,7 +17,7 @@ const Login = () => {
 
 	const logGoogleUser = async () => {
 		const { user } = await signInWithGooglePopup();
-		const userDocRef = await createUserDocrumentFromAuth(user);
+		await createUserDocrumentFromAuth(user);
 	};
 
 	const handleChange = (e) => {
@@ -29,8 +29,8 @@ const Login = () => {
 		e.preventDefault();
 		try {
 			const logUser = async () => {
-				const { user } = await signInWithStoredEmail(email, password);
-				const userDocRef = await createUserDocrumentFromAuth(user);
+				const response = await signInWithStoredEmail(email, password);
+				console.log(response);
 			};
 		} catch (error) {
 			console.log(error.code);
@@ -73,7 +73,7 @@ const Login = () => {
 			<Button type="submit" buttonType="primary">
 				Login
 			</Button>
-			<Button onClick={logGoogleUser} buttonType="primary">
+			<Button type="button" onClick={logGoogleUser} buttonType="primary">
 				Sign in with Google
 			</Button>
 		</div>
