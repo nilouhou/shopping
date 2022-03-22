@@ -10,6 +10,7 @@ import {
 	signInWithEmailAndPassword,
 	signInWithRedirect,
 	signOut,
+	onAuthStateChanged,
 } from "firebase/auth";
 
 //import firebase storedata
@@ -90,4 +91,9 @@ export const signInWithStoredEmail = async (email, password) => {
 };
 
 //Sign out function
-export const signOutFirebase = () => signOut(auth);
+export const signOutFirebase = async () => await signOut(auth);
+
+// refactor our code to only have one place to change user
+export const onAuthStateChangedListener = (callback) => {
+	onAuthStateChanged(auth, callback);
+};
