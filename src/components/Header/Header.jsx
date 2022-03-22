@@ -27,13 +27,8 @@ const MenuItem = styled.div`
 `;
 
 const Header = () => {
-	const { currentUser, setCurrentUser } = useContext(UserContext);
-	console.log(currentUser);
+	const { currentUser } = useContext(UserContext);
 
-	const signOutHandler = () => {
-		signOutFirebase();
-		setCurrentUser(null);
-	};
 	return (
 		<>
 			<Container>
@@ -57,7 +52,7 @@ const Header = () => {
 					</MenuItem>
 					<MenuItem>
 						{currentUser ? (
-							<span onClick={signOutHandler}>Sign Out</span>
+							<span onClick={signOutFirebase}>Sign Out</span>
 						) : (
 							<Link to="/login">Login</Link>
 						)}

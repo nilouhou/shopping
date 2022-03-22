@@ -1,6 +1,5 @@
 import {
 	signInWithGooglePopup,
-	createUserDocumentFromAuth,
 	signInWithStoredEmail,
 } from "../../utils/firbase/firebase";
 
@@ -16,8 +15,7 @@ const Login = () => {
 	const [values, setValues] = useState(intialVlue);
 
 	const signInWithGoogle = async () => {
-		const { user } = await signInWithGooglePopup();
-		await createUserDocumentFromAuth(user);
+		await signInWithGooglePopup();
 	};
 
 	const handleChange = (e) => {
