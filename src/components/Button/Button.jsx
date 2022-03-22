@@ -2,7 +2,7 @@ import React from "react";
 import "./Button.scss";
 const BUTTUON_STYLES = {
 	primary: "primary",
-	secondery: "secondery",
+	secondary: "secondary",
 };
 
 const Button = ({ children, buttonType, ...otherProps }) => {

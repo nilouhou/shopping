@@ -75,24 +75,30 @@ const Login = () => {
 	];
 
 	return (
-		<div>
-			<h1>Login page</h1>
-			<form onSubmit={handleSubmit}>
-				{inputs.map((input) => (
-					<FormInput
-						key={input.id}
-						{...input}
-						value={values[input.name]}
-						onChange={handleChange}
-					/>
-				))}
-				<Button type="submit" buttonType="primary">
-					Login
-				</Button>
-				<Button type="button" onClick={signInWithGoogle} buttonType="primary">
-					Sign in with Google
-				</Button>
-			</form>
+		<div className="container">
+			<div className="register-wrapper">
+				<h1>Login page</h1>
+				<form onSubmit={handleSubmit}>
+					{inputs.map((input) => (
+						<FormInput
+							key={input.id}
+							{...input}
+							value={values[input.name]}
+							onChange={handleChange}
+						/>
+					))}
+					<Button type="submit" buttonType="primary">
+						Login
+					</Button>
+					<Button
+						type="button"
+						onClick={signInWithGoogle}
+						buttonType="secondary"
+					>
+						Sign in with Google
+					</Button>
+				</form>
+			</div>
 		</div>
 	);
 };
