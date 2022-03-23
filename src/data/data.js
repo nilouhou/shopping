@@ -40,7 +40,7 @@ export const categories = [
 	},
 ];
 
-export const products = [
+export const productsData = [
 	{
 		id: 1,
 		name: "Brown Brim",
