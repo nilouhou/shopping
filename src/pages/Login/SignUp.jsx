@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import FormInput from "../../components/FormInput/FormInput";
 import "./Login.scss";
 import Button from "../../components/Button/Button";
+import { initializeAuth } from "firebase/auth";
 
 const SignUp = () => {
 	const intialVlue = {
@@ -29,7 +30,8 @@ const SignUp = () => {
 		}
 
 		try {
-			const { user } = await creatAuthUserWithEmailAndPassword(email, password);
+			await creatAuthUserWithEmailAndPassword(email, password);
+			setValues(initializeAuth);
 		} catch (error) {
 			console.log(error);
 		}

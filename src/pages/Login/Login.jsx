@@ -31,7 +31,7 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const { user } = await signInWithStoredEmail(email, password);
+			await signInWithStoredEmail(email, password);
 
 			resetFormFields();
 		} catch (error) {
