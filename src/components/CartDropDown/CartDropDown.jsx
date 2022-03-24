@@ -1,13 +1,9 @@
 import "./CartDropDown.scss";
 import Button from "../Button/Button";
 
-const CartDropDown = (CartOpen) => {
+const CartDropDown = (C) => {
 	return (
-		<div
-			className={`${
-				CartOpen === true ? "show" : "hide"
-			} cart-dropdown-container`}
-		>
+		<div className="cart-dropdown-container">
 			<Button buttonType="primary">Checkout</Button>
 		</div>
 	);
