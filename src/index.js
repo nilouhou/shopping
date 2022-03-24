@@ -3,14 +3,17 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { UserProvider } from "../src/contexts/user.context";
-import { ProductProvier } from "./contexts/products.contect";
+import { ProductProvier } from "./contexts/products.context";
+import { CartProvider } from "./contexts/cart.context";
 
 ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<UserProvider>
 				<ProductProvier>
-					<App />
+					<CartProvider>
+						<App />
+					</CartProvider>
 				</ProductProvier>
 			</UserProvider>
 		</BrowserRouter>

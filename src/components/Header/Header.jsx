@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Badge from "@mui/material/Badge";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { UserContext } from "../../contexts/user.context";
+import { CartContext } from "../../contexts/cart.context";
 import { signOutFirebase } from "../../utils/firbase/firebase";
 import CartDropDown from "../CartDropDown/CartDropDown";
 
@@ -25,11 +26,18 @@ const Right = styled.div`
 const Left = styled.div``;
 const MenuItem = styled.div`
 	margin: 0.5rem;
+	cursor: pointer;
 `;
 
 const Header = () => {
 	const { currentUser } = useContext(UserContext);
+	const { setCartopen, CartOpen } = useContext(CartContext);
 
+	const cartHandler = () => {
+		console.log("hi");
+		setCartopen(!CartOpen);
+		console.log(CartOpen);
+	};
 	return (
 		<>
 			<Container>
@@ -45,7 +53,7 @@ const Header = () => {
 					</MenuItem>
 					<MenuItem>
 						<Badge badgeContent={4} color="primary">
-							<ShoppingCartOutlinedIcon />
+							<ShoppingCartOutlinedIcon onClick={cartHandler} />
 						</Badge>
 					</MenuItem>
 					<MenuItem>
@@ -58,7 +66,7 @@ const Header = () => {
 							<Link to="/login">Login</Link>
 						)}
 					</MenuItem>
-					<CartDropDown />
+					<CartDropDown CartOpen={CartOpen} />
 				</Right>
 			</Container>
 
