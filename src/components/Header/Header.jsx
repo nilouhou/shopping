@@ -5,6 +5,7 @@ import Badge from "@mui/material/Badge";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { UserContext } from "../../contexts/user.context";
 import { signOutFirebase } from "../../utils/firbase/firebase";
+import CartDropDown from "../CartDropDown/CartDropDown";
 
 const Container = styled.div`
 	height: 3.75rem;
@@ -57,6 +58,7 @@ const Header = () => {
 							<Link to="/login">Login</Link>
 						)}
 					</MenuItem>
+					<CartDropDown />
 				</Right>
 			</Container>
 
