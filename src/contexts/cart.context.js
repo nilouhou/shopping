@@ -14,10 +14,11 @@ const addCartItem = (cartItems, productsToAdd) => {
 	if (existedItem) {
 		return cartItems.map((item) =>
 			item.id === productsToAdd.id
-				? { ...cartItems, quantity: item.quantity + 1 }
+				? { ...item, quantity: item.quantity + 1 }
 				: item
 		);
 	}
+
 	return [...cartItems, { ...productsToAdd, quantity: 1 }];
 };
 
