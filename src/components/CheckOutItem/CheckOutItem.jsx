@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./CheckOut.scss";
+import "./CheckOutItem.scss";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -20,14 +20,17 @@ const CheckOutItem = ({ cartItem }) => {
 		removeFromCart(cartItem);
 	};
 	return (
-		<div className="checkout-container">
-			<img src={imageUrl} alt={`${name}`} />
-			<p>{name}</p>
-			<p>
-				<RemoveIcon onClick={minusHandler} /> {quantity}{" "}
-				<AddIcon onClick={addHandler} />x ${price}
-			</p>
-			<p>total item :${quantity * price}</p>
+		<div className="checkout-item-container">
+			<div className="image-container">
+				<img src={imageUrl} alt={`${name}`} />
+			</div>
+			<span className="name"> {name} </span>
+			<span className="quantity">
+				<RemoveIcon onClick={minusHandler} className="arrow" />
+				<span className="value"> {quantity}</span>
+				<AddIcon onClick={addHandler} className="arrow" />
+			</span>
+			<p className="price">${quantity * price}</p>
 			<div>
 				<ClearIcon onClick={removeHandler} />
 			</div>
