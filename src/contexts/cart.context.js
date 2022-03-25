@@ -8,6 +8,7 @@ export const CartContext = createContext({
 	cartCount: 0,
 	removeFromCart: () => {},
 	clearCart: () => {},
+	total: 0,
 });
 
 //function to to see if the item already exit in the cart or not, if it does add the quality
@@ -45,6 +46,7 @@ export const CartProvider = ({ children }) => {
 	const [CartOpen, setCartOpen] = useState(false);
 	const [cartItems, setCartItems] = useState([]);
 	const [cartCount, setCartCount] = useState(0);
+	const [total, setTotal] = useState(0);
 
 	//calculate the qauntity of items in the cart
 	useEffect(() => {
@@ -53,6 +55,11 @@ export const CartProvider = ({ children }) => {
 			0
 		);
 		setCartCount(newCartCount);
+
+		const newTotal = cartItems.reduce((total, cartItem) => {
+			return total + cartItem.quantity * cartItem.price;
+		}, 0);
+		setTotal(newTotal);
 	}, [cartItems]);
 
 	//method when click shop items added to cart
@@ -76,6 +83,7 @@ export const CartProvider = ({ children }) => {
 		cartCount,
 		removeFromCart,
 		clearCart,
+		total,
 	};
 
 	return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

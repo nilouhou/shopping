@@ -4,7 +4,7 @@ import { CartContext } from "../../contexts/cart.context";
 import "./CheckOut.scss";
 
 const CheckOut = () => {
-	const { cartItems } = useContext(CartContext);
+	const { cartItems, total } = useContext(CartContext);
 	return (
 		<div className="checkout-container">
 			<h1>Checkout</h1>
@@ -30,7 +30,7 @@ const CheckOut = () => {
 					<CheckOutItem key={cartItem.id} cartItem={cartItem} />
 				))}
 
-			<div className="total">Total: </div>
+			<div className="total">Total:{total} </div>
 		</div>
 	);
 };
