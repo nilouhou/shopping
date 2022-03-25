@@ -6,6 +6,8 @@ export const CartContext = createContext({
 	cartItems: [],
 	addToCart: () => {},
 	cartCount: 0,
+	removeFromCart: () => {},
+	clearCart: () => {},
 });
 
 //function to to see if the item already exit in the cart or not, if it does add the quality
@@ -23,7 +25,7 @@ const addCartItem = (cartItems, productsToAdd) => {
 	return [...cartItems, { ...productsToAdd, quantity: 1 }];
 };
 
-//function to remove
+//function to decrease the amount
 const removeCartItem = (cartItems, productsToRemove) => {
 	const existedItem = cartItems.find((item) => item.id === productsToRemove.id);
 	if (existedItem.quantity === 1) {
@@ -35,6 +37,9 @@ const removeCartItem = (cartItems, productsToRemove) => {
 			: item
 	);
 };
+
+const clearCartItem = (cartItems, cartItemToRemove) =>
+	cartItems.filter((item) => item.id !== cartItemToRemove.id);
 
 export const CartProvider = ({ children }) => {
 	const [CartOpen, setCartOpen] = useState(false);
@@ -59,6 +64,10 @@ export const CartProvider = ({ children }) => {
 	const removeFromCart = (productsToRemove) => {
 		setCartItems(removeCartItem(cartItems, productsToRemove));
 	};
+
+	const clearCart = (cartItemToRemove) => {
+		setCartItems(clearCartItem(cartItems, cartItemToRemove));
+	};
 	const value = {
 		CartOpen,
 		setCartOpen,
@@ -66,6 +75,7 @@ export const CartProvider = ({ children }) => {
 		cartItems,
 		cartCount,
 		removeFromCart,
+		clearCart,
 	};
 
 	return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
