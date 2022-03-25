@@ -1,10 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext({
 	CartOpen: true,
 	setCartOpen: () => {},
 	cartItems: [],
 	addToCart: () => {},
+	cartCount: 0,
 });
 
 //function to to see if the item already exit in the cart or not, if it does add the quality
@@ -24,8 +25,17 @@ const addCartItem = (cartItems, productsToAdd) => {
 
 export const CartProvider = ({ children }) => {
 	const [CartOpen, setCartOpen] = useState(false);
-
 	const [cartItems, setCartItems] = useState([]);
+	const [cartCount, setCartCount] = useState(0);
+
+	//calculate the qauntity of items in the cart
+	useEffect(() => {
+		const newCartCount = cartItems.reduce(
+			(total, cartItem) => total + cartItem.quantity,
+			0
+		);
+		setCartCount(newCartCount);
+	}, [cartItems]);
 
 	//method when click shop items added to cart
 	//it will run another function to see if the item already exit in the cart or not, if it does add the quality
@@ -33,7 +43,7 @@ export const CartProvider = ({ children }) => {
 		setCartItems(addCartItem(cartItems, productsToAdd));
 	};
 
-	const value = { CartOpen, setCartOpen, addToCart, cartItems };
+	const value = { CartOpen, setCartOpen, addToCart, cartItems, cartCount };
 
 	return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

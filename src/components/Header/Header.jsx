@@ -31,7 +31,7 @@ const MenuItem = styled.div`
 
 const Header = () => {
 	const { currentUser } = useContext(UserContext);
-	const { setCartOpen, CartOpen } = useContext(CartContext);
+	const { setCartOpen, CartOpen, cartCount } = useContext(CartContext);
 
 	const cartHandler = () => {
 		setCartOpen(!CartOpen);
@@ -50,7 +50,7 @@ const Header = () => {
 						<Link to="/shop">Shopping</Link>
 					</MenuItem>
 					<MenuItem onClick={cartHandler}>
-						<Badge badgeContent={4} color="primary">
+						<Badge badgeContent={cartCount} color="primary">
 							<ShoppingCartOutlinedIcon />
 						</Badge>
 					</MenuItem>
