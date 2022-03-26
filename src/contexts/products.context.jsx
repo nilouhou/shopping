@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { productsData } from "../data/data";
+import { SHOP_DATA } from "../data/shop-data";
 import axios from "axios";
 
 export const ProductContext = createContext({
@@ -7,7 +7,7 @@ export const ProductContext = createContext({
 });
 
 export const ProductProvier = ({ children }) => {
-	const [products, setPrpducts] = useState(productsData);
+	const [products, setProducts] = useState([]);
 	const value = { products };
 
 	return (

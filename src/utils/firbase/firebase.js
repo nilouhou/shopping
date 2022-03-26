@@ -16,7 +16,14 @@ import {
 //import firebase storedata
 //doc = documentation : shoes is collection, nike max is document
 //getDoc= getting data of document, for example get data of nike max price, size
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+	getFirestore,
+	doc,
+	getDoc,
+	setDoc,
+	collection,
+	WriteBatch,
+} from "firebase/firestore";
 
 //web app's Firebase configuration
 const firebaseConfig = {
@@ -46,6 +53,11 @@ export const signInWithGoogleRedirect = () =>
 
 //Create database instance
 export const db = getFirestore();
+
+//adding data to databse collection key: hats,shirts----- objectsToAdd: sub categories os each collections
+const addCollectionandDocuments = async (collectionKey, objectsToAdd) => {
+	const collectionRef = collection(db, collectionKey);
+};
 
 //how to use the database, create a method to use it
 export const createUserDocumentFromAuth = async (
