@@ -23,6 +23,7 @@ import {
 	setDoc,
 	collection,
 	WriteBatch,
+	writeBatch,
 } from "firebase/firestore";
 
 //web app's Firebase configuration
@@ -54,9 +55,21 @@ export const signInWithGoogleRedirect = () =>
 //Create database instance
 export const db = getFirestore();
 
-//adding data to databse collection key: hats,shirts----- objectsToAdd: sub categories os each collections
-const addCollectionandDocuments = async (collectionKey, objectsToAdd) => {
+//adding data to databse collection key: hats,shirts----- objectsToAdd: each collections data
+export const addCollectionandDocuments = async (
+	collectionKey,
+	objectsToAdd
+) => {
 	const collectionRef = collection(db, collectionKey);
+	const batch = writeBatch(db);
+
+	objectsToAdd.forEach((object) => {
+		const docRef = doc(collectionRef, object.title.toLowerCase());
+		batch.set(docRef, object);
+	});
+
+	await batch.commit();
+	console.log("done");
 };
 
 //how to use the database, create a method to use it
