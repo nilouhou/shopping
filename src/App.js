@@ -7,6 +7,7 @@ import { Shop } from "./pages/Shop/Shop";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/Login/SignUp";
 import CheckOut from "./pages/CheckOut/CheckOut";
+import Products from "./pages/Products/Products";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Route path="/" element={<Header />}>
 					<Route index element={<Home />} />
 					<Route path="shop" element={<Shop />} />
+					<Route path="shop/:category" element={<Products />} />
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<SignUp />} />
 					<Route path="/checkout" element={<CheckOut />} />
