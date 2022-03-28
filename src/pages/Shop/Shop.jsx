@@ -13,9 +13,10 @@ export const Shop = () => {
 					<div key={categoriesTitle}>
 						<h1 className="title">{categoriesTitle}</h1>
 						<div className="products-container">
-							{products[categoriesTitle].map((product) => (
+							{products[categoriesTitle].slice(1, 4).map((product) => (
 								<ProductItem key={product.id} product={product} />
 							))}
+							<div className="more">View More </div>
 						</div>
 					</div>
 				);
