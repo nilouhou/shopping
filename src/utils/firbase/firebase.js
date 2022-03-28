@@ -22,8 +22,9 @@ import {
 	getDoc,
 	setDoc,
 	collection,
-	WriteBatch,
 	writeBatch,
+	query,
+	getDocs,
 } from "firebase/firestore";
 
 //web app's Firebase configuration
@@ -70,6 +71,28 @@ export const addCollectionandDocuments = async (
 
 	await batch.commit();
 	console.log("done");
+};
+
+//collecting data from firestore
+export const getDataFromFireStore = async () => {
+	const collectionRef = collection(db, "categories");
+	const q = query(collectionRef);
+
+	const queryData = await getDocs(q); //getting all data in database
+
+	//shaping all data to what we want to be look like
+	const categoryMap = queryData.docs.reduce((acc, docData) => {
+		// console.log(docData.data());
+		//{title: 'Hats', items: Array(9)}
+		//{title: 'Jackets', items: Array(5)}
+		//{items: Array(6), title: 'Mens'}
+		//by usinf reduce we combine all of the in one object with keys title and value item  title:items
+		const { title, items } = docData.data();
+		acc[title.toLowerCase()] = items;
+		return acc;
+	}, {});
+
+	return categoryMap;
 };
 
 //how to use the database, create a method to use it
