@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { categories } from "../../data/data";
+import { ProductContext } from "../../contexts/products.context";
 import CategoryItem from "../CategoryItem/CategoryItem";
 import styled from "styled-components";
 
@@ -10,11 +11,17 @@ const Wrapper = styled.div`
 `;
 
 const Categories = () => {
+	const { products } = useContext(ProductContext);
+
 	return (
 		<Wrapper>
-			{categories.map((category) => (
-				<CategoryItem key={category.id} category={category} />
-			))}
+			{Object.keys(products).map((title) =>
+				products[title]
+					.slice(0, 1)
+					.map((category) => (
+						<CategoryItem key={title} category={category} title={title} />
+					))
+			)}
 		</Wrapper>
 	);
 };

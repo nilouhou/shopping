@@ -38,10 +38,11 @@ const Button = styled.button`
 	font-weight: 600;
 `;
 
-const CategoryItem = ({ category: { img, title } }) => {
+const CategoryItem = ({ title, category }) => {
+	console.log({ category });
 	return (
 		<Container>
-			<Image src={img} alt={title} />
+			<Image src={category.imageUrl} alt={title} />
 			<Info>
 				<Title>{title}</Title>
 				<Button>SHOP NOW</Button>
