@@ -1,4 +1,5 @@
 import Categories from "../../components/Categories/Categories";
+import Footer from "../../components/Footer/Footer";
 import Slider from "../../components/Slider/Slider";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
 		<div>
 			<Slider />
 			<Categories />
+			<Footer />
 		</div>
 	);
 };
