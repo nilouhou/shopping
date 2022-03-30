@@ -1,9 +1,17 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 const Container = styled.div`
-	flex: 1;
-	margin: 3px;
-	height: 70vh;
-	position: relative;
+	min-width: 30%;
+	height: 240px;
+	flex: 1 1 auto;
+	position:relative;
+	overflow:hidden;
+	text-transform:uppercase;
+	&:hover {
+		cursor: pointer;
+		transition: .5s ease;
+		opacity:0.5;
+		
 `;
 
 const Image = styled.img`
@@ -39,13 +47,14 @@ const Button = styled.button`
 `;
 
 const CategoryItem = ({ title, category }) => {
+	const navigate = useNavigate();
 	console.log({ category });
 	return (
 		<Container>
 			<Image src={category.imageUrl} alt={title} />
 			<Info>
 				<Title>{title}</Title>
-				<Button>SHOP NOW</Button>
+				<Button onClick={() => navigate(`./shop/${title}`)}>SHOP NOW</Button>
 			</Info>
 		</Container>
 	);

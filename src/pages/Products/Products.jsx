@@ -8,7 +8,7 @@ const Products = () => {
 	const { products } = useContext(ProductContext);
 	const productsData = products[category];
 	return (
-		<div>
+		<div className="main-container">
 			<h1>{category}</h1>
 			<div className="products-container">
 				{productsData &&

@@ -5,9 +5,12 @@ import CategoryItem from "../CategoryItem/CategoryItem";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+	width: 100%;
 	display: flex;
-	padding: 8px;
-	gap: 8px;
+	gap: 1rem;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 1rem;
 `;
 
 const Categories = () => {
