@@ -48,7 +48,7 @@ const Button = styled.button`
 
 const CategoryItem = ({ title, category }) => {
 	const navigate = useNavigate();
-	console.log({ category });
+
 	return (
 		<Container>
 			<Image src={category.imageUrl} alt={title} />

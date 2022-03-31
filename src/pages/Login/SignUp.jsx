@@ -19,7 +19,6 @@ const SignUp = () => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	};
 
-	console.log(values);
 	const { displayName, email, password, confirmPassword } = values;
 
 	const handleSubmit = async (e) => {

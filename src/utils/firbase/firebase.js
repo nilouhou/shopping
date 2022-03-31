@@ -70,7 +70,6 @@ export const addCollectionandDocuments = async (
 	});
 
 	await batch.commit();
-	console.log("done");
 };
 
 //collecting data from firestore
