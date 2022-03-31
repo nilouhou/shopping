@@ -6,6 +6,7 @@ import {
 import { useState, useContext } from "react";
 import FormInput from "../../components/FormInput/FormInput";
 import Button, { BUTTUON_STYLES } from "../../components/Button/Button";
+import { Container, Form, RegisterWrapper } from "./Login.style";
 
 const Login = () => {
 	const intialVlue = {
@@ -69,10 +70,10 @@ const Login = () => {
 	];
 
 	return (
-		<div className="container">
-			<div className="register-wrapper">
+		<Container>
+			<RegisterWrapper>
 				<h1>Login page</h1>
-				<form onSubmit={handleSubmit}>
+				<Form onSubmit={handleSubmit}>
 					{inputs.map((input) => (
 						<FormInput
 							key={input.id}
@@ -91,9 +92,9 @@ const Login = () => {
 					>
 						Sign in with Google
 					</Button>
-				</form>
-			</div>
-		</div>
+				</Form>
+			</RegisterWrapper>
+		</Container>
 	);
 };
 

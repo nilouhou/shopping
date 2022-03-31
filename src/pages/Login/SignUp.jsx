@@ -2,7 +2,7 @@ import { creatAuthUserWithEmailAndPassword } from "../../utils/firbase/firebase"
 
 import { useState, useContext } from "react";
 import FormInput from "../../components/FormInput/FormInput";
-import "./Login.scss";
+import { Container, Form, RegisterWrapper } from "./Login.style";
 import Button, { BUTTUON_STYLES } from "../../components/Button/Button";
 import { initializeAuth } from "firebase/auth";
 
@@ -75,10 +75,10 @@ const SignUp = () => {
 	];
 
 	return (
-		<div className="container">
-			<div className="register-wrapper">
+		<Container>
+			<RegisterWrapper>
 				<h1>Sin up page</h1>
-				<form onSubmit={handleSubmit}>
+				<Form onSubmit={handleSubmit}>
 					{inputs.map((input) => (
 						<FormInput
 							key={input.id}
@@ -91,9 +91,9 @@ const SignUp = () => {
 					<Button type="submit" buttonType={BUTTUON_STYLES.primary}>
 						SignUp
 					</Button>
-				</form>
-			</div>
-		</div>
+				</Form>
+			</RegisterWrapper>
+		</Container>
 	);
 };
 

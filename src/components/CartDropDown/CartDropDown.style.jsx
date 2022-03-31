@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+//if I want to target only specific button styled for example primary I need to do this
+//1- import {PrimaryButton} from "../button/button.style"
+//2- ${PrimaryButton}{
+//			margintop:auto }
+// Here I target any buttons
+
 export const CartDropdownContainer = styled.div`
 	position: absolute;
 	width: 240px;
