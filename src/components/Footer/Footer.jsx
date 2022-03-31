@@ -15,10 +15,7 @@ const Container = styled.div`
 const Footer = () => {
 	return (
 		<>
-			<Container>
-				{" "}
-				&copy; 2022 <Link to="http://faratech.ca/">Faratech.ca</Link>
-			</Container>
+			<Container> &copy;Developed by Nilou Houshmand | Faratech.ca</Container>
 		</>
 	);
 };
