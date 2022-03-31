@@ -3,7 +3,7 @@ import { creatAuthUserWithEmailAndPassword } from "../../utils/firbase/firebase"
 import { useState, useContext } from "react";
 import FormInput from "../../components/FormInput/FormInput";
 import "./Login.scss";
-import Button from "../../components/Button/Button";
+import Button, { BUTTUON_STYLES } from "../../components/Button/Button";
 import { initializeAuth } from "firebase/auth";
 
 const SignUp = () => {
@@ -88,7 +88,7 @@ const SignUp = () => {
 						/>
 					))}
 
-					<Button type="submit" buttonType="primary">
+					<Button type="submit" buttonType={BUTTUON_STYLES.primary}>
 						SignUp
 					</Button>
 				</form>

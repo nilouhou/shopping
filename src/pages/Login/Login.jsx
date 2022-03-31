@@ -5,7 +5,7 @@ import {
 
 import { useState, useContext } from "react";
 import FormInput from "../../components/FormInput/FormInput";
-import Button from "../../components/Button/Button";
+import Button, { BUTTUON_STYLES } from "../../components/Button/Button";
 
 const Login = () => {
 	const intialVlue = {
@@ -81,13 +81,13 @@ const Login = () => {
 							onChange={handleChange}
 						/>
 					))}
-					<Button type="submit" buttonType="primary">
+					<Button type="submit" buttonType={BUTTUON_STYLES.primary}>
 						Login
 					</Button>
 					<Button
 						type="button"
 						onClick={signInWithGoogle}
-						buttonType="secondary"
+						buttonType={BUTTUON_STYLES.secondary}
 					>
 						Sign in with Google
 					</Button>

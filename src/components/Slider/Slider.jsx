@@ -4,7 +4,7 @@ import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowRightOutlined";
 import { sliderItems } from "../../data/data";
 
 import styled from "styled-components";
-import Button from "../Button/Button";
+import Button, { BUTTUON_STYLES } from "../Button/Button";
 
 const Container = styled.div`
 	width: 100%;
@@ -98,7 +98,7 @@ const Slider = () => {
 						<InfoContainer>
 							<Title>{item.title}</Title>
 							<Description>{item.desc}</Description>
-							<Button buttonType="secondary">Shop Now</Button>
+							<Button buttonType={BUTTUON_STYLES.secondary}>Shop Now</Button>
 						</InfoContainer>
 					</Slide>
 				))}

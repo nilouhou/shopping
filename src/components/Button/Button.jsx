@@ -1,16 +1,22 @@
 import React from "react";
-import "./Button.scss";
-const BUTTUON_STYLES = {
+import { BaseButton, PrimaryButton, SecondaryButton } from "./Button.style";
+export const BUTTUON_STYLES = {
+	base: "base",
 	primary: "primary",
 	secondary: "secondary",
 };
 
+const getButton = (buttonType = BUTTUON_STYLES.base) =>
+	({
+		[BUTTUON_STYLES.base]: BaseButton,
+		[BUTTUON_STYLES.primary]: PrimaryButton,
+		[BUTTUON_STYLES.secondary]: SecondaryButton,
+	}[buttonType]);
+
 const Button = ({ children, buttonType, ...otherProps }) => {
-	return (
-		<button {...otherProps} className={buttonType}>
-			{children}
-		</button>
-	);
+	const CustomButton = getButton(buttonType);
+	console.log(getButton(BUTTUON_STYLES.base));
+	return <CustomButton {...otherProps}>{children}</CustomButton>;
 };
 
 export default Button;
