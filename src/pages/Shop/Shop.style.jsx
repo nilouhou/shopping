@@ -1,10 +1,13 @@
-.products-container {
+import styled from "styled-components";
+
+export const ProductsContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	column-gap: 20px;
 	row-gap: 50px;
+`;
 
-	.more {
+export const More = styled.div` 
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -18,11 +21,11 @@
 			cursor: pointer;
 		}
 	}
-}
+`;
 
-.main-container {
+export const Container = styled.div`
 	padding: 2rem;
-	.title {
+	h1 {
 		text-transform: capitalize;
 	}
-}
+`;

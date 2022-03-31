@@ -2,32 +2,29 @@ import React, { useContext } from "react";
 import { ProductContext } from "../../contexts/products.context";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import { useNavigate } from "react-router-dom";
-import "./Shop.scss";
+import { ProductsContainer, Container, More } from "./Shop.style";
 
 export const Shop = () => {
 	const { products } = useContext(ProductContext);
 	const navigate = useNavigate();
 
 	return (
-		<div className="main-container">
+		<Container>
 			{Object.keys(products).map((categoriesTitle) => {
 				return (
 					<div key={categoriesTitle}>
-						<h1 className="title">{categoriesTitle}</h1>
-						<div className="products-container">
+						<h1>{categoriesTitle}</h1>
+						<ProductsContainer>
 							{products[categoriesTitle].slice(1, 4).map((product) => (
 								<ProductItem key={product.id} product={product} />
 							))}
-							<div
-								className="more"
-								onClick={() => navigate(`${categoriesTitle}`)}
-							>
+							<More onClick={() => navigate(`${categoriesTitle}`)}>
 								View More
-							</div>
-						</div>
+							</More>
+						</ProductsContainer>
 					</div>
 				);
 			})}
-		</div>
+		</Container>
 	);
 };
