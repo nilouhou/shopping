@@ -1,5 +1,13 @@
 import React, { useContext } from "react";
-import "./CheckOutItem.scss";
+import {
+	CheckoutItemContainer,
+	ImageContainer,
+	Name,
+	Price,
+	Quantity,
+	Value,
+	Clear,
+} from "./CheckOutItem.style";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -20,21 +28,24 @@ const CheckOutItem = ({ cartItem }) => {
 		clearCart(cartItem);
 	};
 	return (
-		<div className="checkout-item-container">
-			<div className="image-container">
+		<CheckoutItemContainer>
+			<ImageContainer>
 				<img src={imageUrl} alt={`${name}`} />
-			</div>
-			<span className="name"> {name} </span>
-			<span className="quantity">
+			</ImageContainer>
+			<Name> {name} </Name>
+			<Quantity>
 				<RemoveIcon onClick={minusHandler} className="arrow" />
-				<span className="value"> {quantity}</span>
-				<AddIcon onClick={addHandler} className="arrow" />
-			</span>
-			<p className="price">${quantity * price}</p>
-			<div>
+				<Value> {quantity}</Value>
+				<AddIcon
+					onClick={addHandler}
+					arrow={(props) => props.arrow && "cursor:pointor"}
+				/>
+			</Quantity>
+			<Price>${quantity * price}</Price>
+			<Clear>
 				<ClearIcon onClick={removeHandler} />
-			</div>
-		</div>
+			</Clear>
+		</CheckoutItemContainer>
 	);
 };
 
